@@ -17,6 +17,6 @@ A rusherhack plugin that replaces chat messages like : sob : (:sob:) or : 100 : 
 - **Add your emojis in a .png format to .minecraft/emojis**
 
 ### Globally:
-- **Open a Pull Request with emojis (.png)  that you want to add**
+- **Open a Pull Request in [this repo](https://github.com/Lokfid/emojis) with emojis (.png)  that you want to add**
 - **Keep in mind that i won't add anything NSFW**
 
