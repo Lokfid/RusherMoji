@@ -1,0 +1,16 @@
+{
+  "Plugin-Class": "org.lokfid.EmojiPlugin",
+  "Name": "${project.plugin_name}",
+  "Version": "${project.plugin_version}",
+  "Description": "Emoji rusherhack plugin",
+  "URL": "https://github.com/Lokfid/EmojiPlugin",
+  "Authors": [
+    "Lokfid"
+  ],
+  "Minecraft-Versions": [
+    "1.20.4"
+  ],
+  "Mixin-Configs": [
+    "mixins.emoji-plugin.json"
+  ]
+}
