@@ -68,7 +68,7 @@ public class EmojiPlugin extends Plugin {
 					NativeImage image = NativeImage.read(new FileInputStream(file));
 					DynamicTexture dynamicTexture = new DynamicTexture(image);
 
-					// We'll use a ResourceLocation under "emoji" with dynamic/ prefix
+					//Add it as a ResourceLocation for easier rendering
 					ResourceLocation id = new ResourceLocation("emoji", idPath);
 					Minecraft.getInstance().getTextureManager().register(id, dynamicTexture);
 					EMOJIS.put(emojiName, new Emoji(id));
