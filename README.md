@@ -19,4 +19,6 @@ A rusherhack plugin that replaces chat messages like : sob : :sob: or  :100 : :1
 ### Globally:
 - **Open a Pull Request in [this repo](https://github.com/Lokfid/emojis) with emojis (.png)  that you want to add**
 - **Keep in mind that i won't add anything NSFW**
+- **Keep in mind that decision to add them or not is left to me**
+- **Please add more than 1 emoji per pr**
 
