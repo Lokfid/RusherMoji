@@ -1,5 +1,5 @@
 # RusherMoji
-A rusherhack plugin that replaces chat messages like : sob : (:sob:) or : 100 : (:100:) with their corresponding emojis
+A rusherhack plugin that replaces chat messages like : sob : :sob: or  :100 : :100: with their corresponding emojis
 
 # Usage
 - **Download the plugin from the Releases tab into your `.minecraft/rusherhack/plugins` folder (create the folder if it doesnt exist)** 
@@ -17,6 +17,8 @@ A rusherhack plugin that replaces chat messages like : sob : (:sob:) or : 100 : 
 - **Add your emojis in a .png format to .minecraft/emojis**
 
 ### Globally:
-- **Open a Pull Request with emojis (.png)  that you want to add**
+- **Open a Pull Request in [this repo](https://github.com/Lokfid/emojis) with emojis (.png)  that you want to add**
 - **Keep in mind that i won't add anything NSFW**
+- **Keep in mind that decision to add them or not is left to me**
+- **Please add more than 1 emoji per pr**
 
