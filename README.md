@@ -7,7 +7,7 @@ A rusherhack plugin that replaces chat messages like : sob : :sob: or  :100 : :1
 - **Launch your RusherHack instance and try writing any emoji in chat**
 
 ## Some things to know:
-- **RusherMoji connect to this [repo](https://github.com/Lokfid/emojis) to download it's emojis**
+- **RusherMoji connects to this [repo](https://github.com/Lokfid/emojis) to download it's emojis**
 - **RusherMoji doesn't work on signs, in books, etc. Only chat**
 - **RusherMoji may not work correctly in singleplayer**
 
