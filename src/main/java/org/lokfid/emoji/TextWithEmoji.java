@@ -5,6 +5,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.Component;
 import org.lokfid.EmojiPlugin;
+import org.lokfid.mixins.ChatComponentMixin;
 
 import java.util.ArrayList;
 import java.util.List;
