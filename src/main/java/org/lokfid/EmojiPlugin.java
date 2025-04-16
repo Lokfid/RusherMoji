@@ -117,10 +117,10 @@ public class EmojiPlugin extends Plugin {
 		ZipEntry entry = zip.getNextEntry();
 		// iterates over entries in the zip file
 		while(entry != null) {
-			String filePath = dir + File.separator + entry.getName().substring(entry.getName().indexOf("/"));
+			File filePath = new File(dir + File.separator + entry.getName().substring(entry.getName().indexOf("/")));
 			if(!entry.isDirectory()) {
 				//Should prevent directory traversal
-				if (filePath.startsWith(dir.toString())) {
+				if (filePath.getCanonicalPath().startsWith(dir.getCanonicalPath())) {
 					BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
 					byte[] bytesIn = new byte[4096];
 					int read;
