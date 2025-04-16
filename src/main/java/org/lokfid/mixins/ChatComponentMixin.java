@@ -47,7 +47,10 @@ public abstract class ChatComponentMixin {
 
     @WrapOperation(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/util/FormattedCharSequence;III)I"))
         private int render(GuiGraphics instance, Font font, FormattedCharSequence text, int x, int y, int color, Operation<Integer> original){
-            return hudMessages.get(s).render(instance, font, x, y, color);
+            if (s >= 0 && s < hudMessages.size()) {
+                return hudMessages.get(s).render(instance, font, x, y, color);
+            }
+            return x;
     }
 
 

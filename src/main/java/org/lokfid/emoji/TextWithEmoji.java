@@ -29,11 +29,13 @@ public class TextWithEmoji {
     }
 
     public int render(GuiGraphics context, Font textRenderer, int x, int y, int color) {
+        if (component == null || emojis == null || component.isEmpty() || emojis.isEmpty()) return x;
+
         int newX = x;
 
         int count = Math.min(component.size(), emojis.size());
         for (int i = 0; i < count; i++) {
-            context.drawString(textRenderer, component.get(i)  , newX, y, color);
+            context.drawString(textRenderer, component.get(i), newX, y, color);
             newX += textRenderer.width(component.get(i));
             Emoji emoji = emojis.get(i);
             if (emoji != null) {
