@@ -118,7 +118,6 @@ public class EmojiPlugin extends Plugin {
 		// iterates over entries in the zip file
 		while(entry != null) {
 			String filePath = dir + File.separator + entry.getName().substring(entry.getName().indexOf("/"));
-			this.getLogger().info(dir.toString());
 			if(!entry.isDirectory()) {
 				//Should prevent directory traversal
 				if (filePath.startsWith(dir.toString())) {
