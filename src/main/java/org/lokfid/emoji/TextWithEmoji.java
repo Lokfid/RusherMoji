@@ -31,8 +31,8 @@ public class TextWithEmoji {
     public int render(GuiGraphics context, Font textRenderer, int x, int y, int color) {
         int newX = x;
 
-        if (component.size() != emojis.size()) return newX;
-        for (int i = 0; i < emojis.size(); i++) {
+        int count = Math.min(component.size(), emojis.size());
+        for (int i = 0; i < count; i++) {
             context.drawString(textRenderer, component.get(i)  , newX, y, color);
             newX += textRenderer.width(component.get(i));
             Emoji emoji = emojis.get(i);
