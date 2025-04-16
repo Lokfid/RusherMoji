@@ -118,14 +118,18 @@ public class EmojiPlugin extends Plugin {
 		// iterates over entries in the zip file
 		while(entry != null) {
 			String filePath = dir + File.separator + entry.getName().substring(entry.getName().indexOf("/"));
+			this.getLogger().info(dir.toString());
 			if(!entry.isDirectory()) {
-				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
-				byte[] bytesIn = new byte[4096];
-				int read;
-				while((read = zip.read(bytesIn)) != -1) {
-					bos.write(bytesIn, 0, read);
+				//Should prevent directory traversal
+				if (filePath.startsWith(dir.toString())) {
+					BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
+					byte[] bytesIn = new byte[4096];
+					int read;
+					while ((read = zip.read(bytesIn)) != -1) {
+						bos.write(bytesIn, 0, read);
+					}
+					bos.close();
 				}
-				bos.close();
 			}
 			zip.closeEntry();
 			entry = zip.getNextEntry();
