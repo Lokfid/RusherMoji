@@ -12,6 +12,8 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
+import org.lokfid.EmojiPlugin;
+import org.lokfid.emoji.Emoji;
 import org.lokfid.emoji.TextWithEmoji;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,7 +28,7 @@ import java.util.Optional;
 
 import static org.rusherhack.client.api.Globals.mc;
 
-@Mixin(ChatComponent.class)
+@Mixin(value = ChatComponent.class, priority = Integer.MIN_VALUE)
 public abstract class ChatComponentMixin {
 
     @Unique
@@ -55,8 +57,8 @@ public abstract class ChatComponentMixin {
 
 
 
-    @Inject(at = @At("HEAD"), method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/GuiMessageTag;)V")
-    private void add(Component chatComponent, MessageSignature headerSignature, GuiMessageTag tag, CallbackInfo ci){
+    @Inject(at = @At("TAIL"), method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;ILnet/minecraft/client/GuiMessageTag;Z)V")
+    private void add(Component chatComponent, MessageSignature headerSignature, int addedTime, GuiMessageTag tag, boolean onlyTrim, CallbackInfo ci){
         int i = Mth.floor(getWidth() / getScale());
         if (tag != null) {
             GuiMessageTag.Icon icon = tag.icon();
@@ -64,7 +66,8 @@ public abstract class ChatComponentMixin {
                 i -= icon.width + 4 + 2;
             }
         }
-        List<Component> breakText = breakRenderedChatMessageLines(chatComponent.copy(), i, mc.font);
+
+        List<Component> breakText = breakRenderedChatMessageLines(chatComponent, i, mc.font);
 
         if (breakText.isEmpty()) {
             hudMessages.add(0, new TextWithEmoji(Component.empty()));
@@ -72,7 +75,7 @@ public abstract class ChatComponentMixin {
         for (Component text : breakText) {
             hudMessages.add(0, new TextWithEmoji(text));
         }
-        while (hudMessages.size() > 100) {
+        while (hudMessages.size() > 5000) {
             hudMessages.remove(hudMessages.size() - 1);
         }
 
