@@ -12,8 +12,6 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
-import org.lokfid.EmojiPlugin;
-import org.lokfid.emoji.Emoji;
 import org.lokfid.emoji.TextWithEmoji;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
