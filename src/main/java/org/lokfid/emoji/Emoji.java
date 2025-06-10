@@ -3,6 +3,7 @@ package org.lokfid.emoji;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
 public class Emoji {
@@ -22,8 +23,8 @@ public class Emoji {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, alpha);
 
         //Render the texture itself
-        context.blit(resourceLocation, x, y - font.lineHeight / 8, 0, 0, font.lineHeight, font.lineHeight, font.lineHeight, font.lineHeight);
-
+//        context.blit(resourceLocation, x, y - font.lineHeight / 8, 0, 0, font.lineHeight, font.lineHeight, font.lineHeight, font.lineHeight);
+        context.blit(RenderType::guiTextured, resourceLocation, x, y - font.lineHeight / 8, 0, 0, font.lineHeight, font.lineHeight, font.lineHeight, font.lineHeight);
         RenderSystem.disableBlend();
     }
 }

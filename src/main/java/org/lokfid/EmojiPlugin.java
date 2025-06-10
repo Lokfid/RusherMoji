@@ -58,7 +58,7 @@ public class EmojiPlugin extends Plugin {
 				String filename = file.getName();
 
 				//if it's shorter than 4 it doesn't contain .png or its name is ".png"
-				if (filename.length() < 4) return;
+				if (filename.length() <= 4) return;
 
 				//makes something like :sob: or :100:
 				String idPath = filename.substring(0, filename.length() - 4).toLowerCase();
@@ -69,7 +69,7 @@ public class EmojiPlugin extends Plugin {
 					DynamicTexture dynamicTexture = new DynamicTexture(image);
 
 					//Add it as a ResourceLocation for easier rendering
-					ResourceLocation id = new ResourceLocation("emoji", idPath);
+					ResourceLocation id = ResourceLocation.fromNamespaceAndPath("emoji", idPath);
 					Minecraft.getInstance().getTextureManager().register(id, dynamicTexture);
 					EMOJIS.put(emojiName, new Emoji(id));
 				} catch (IOException e) {
@@ -95,7 +95,9 @@ public class EmojiPlugin extends Plugin {
 					if(globalVer.get("version").getAsInt() != localVer.get("version").getAsInt()) update_emojis();
 				}
 			}
-		} catch(Exception ignored) {  }
+		} catch (Exception exception) {
+			System.out.println("Couldn't download updates from " + ZIP_URL + " exception: " + exception);
+		}
 	}
 
 	private static JsonObject read(InputStream stream) {

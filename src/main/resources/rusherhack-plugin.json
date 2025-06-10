@@ -8,7 +8,7 @@
     "Lokfid"
   ],
   "Minecraft-Versions": [
-    "1.20.4"
+    "1.21.4"
   ],
   "Mixin-Configs": [
     "mixins.emoji-plugin.json"

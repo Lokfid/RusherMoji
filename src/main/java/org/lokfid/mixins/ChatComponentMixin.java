@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.GuiMessage;
 import net.minecraft.network.chat.*;
 import net.minecraft.client.ComponentCollector;
 import net.minecraft.client.GuiMessageTag;
@@ -41,7 +42,7 @@ public abstract class ChatComponentMixin {
     private int s;
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/util/FormattedCharSequence;III)I"))
-    private void capture(GuiGraphics guiGraphics, int tickCount, int mouseX, int mouseY, CallbackInfo ci, @Local(ordinal = 13) int s){
+    private void capture(GuiGraphics guiGraphics, int i, int j, int k, boolean bl, CallbackInfo ci, @Local(ordinal = 13) int s){
         this.s = s;
     }
 
@@ -55,17 +56,16 @@ public abstract class ChatComponentMixin {
 
 
 
-    @Inject(at = @At("TAIL"), method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;ILnet/minecraft/client/GuiMessageTag;Z)V")
-    private void add(Component chatComponent, MessageSignature headerSignature, int addedTime, GuiMessageTag tag, boolean onlyTrim, CallbackInfo ci){
+//    @Inject(at = @At("TAIL"), method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;ILnet/minecraft/client/GuiMessageTag;Z)V")
+@Inject(at = @At("TAIL"), method = "addMessageToDisplayQueue")
+    private void add(GuiMessage guiMessage, CallbackInfo ci){
         int i = Mth.floor(getWidth() / getScale());
-        if (tag != null) {
-            GuiMessageTag.Icon icon = tag.icon();
-            if (icon != null) {
-                i -= icon.width + 4 + 2;
-            }
+        GuiMessageTag.Icon icon = guiMessage.icon();
+        if (icon != null) {
+            i -= icon.width + 4 + 2;
         }
 
-        List<Component> breakText = breakRenderedChatMessageLines(chatComponent, i, mc.font);
+        List<Component> breakText = breakRenderedChatMessageLines(guiMessage.content(), i, mc.font);
 
         if (breakText.isEmpty()) {
             hudMessages.add(0, new TextWithEmoji(Component.empty()));
@@ -84,7 +84,7 @@ public abstract class ChatComponentMixin {
         hudMessages.clear();
     }
 
-    @Inject(at = @At("HEAD"), method = "refreshTrimmedMessage")
+    @Inject(at = @At("HEAD"), method = "refreshTrimmedMessages")
     private void refresh(CallbackInfo ci) {
         hudMessages.clear();
     }
