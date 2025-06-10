@@ -3,6 +3,7 @@ package org.lokfid;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.mojang.blaze3d.platform.NativeImage;
+import com.nimbusds.jose.util.Resource;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.resources.ResourceLocation;
@@ -10,6 +11,7 @@ import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.lokfid.emoji.Emoji;
 import org.rusherhack.client.api.plugin.Plugin;
+import org.rusherhack.client.api.utils.ChatUtils;
 
 import java.io.*;
 import java.net.URL;
@@ -58,7 +60,7 @@ public class EmojiPlugin extends Plugin {
 				String filename = file.getName();
 
 				//if it's shorter than 4 it doesn't contain .png or its name is ".png"
-				if (filename.length() <= 4) return;
+				if (filename.length() <= 4) continue;
 
 				//makes something like :sob: or :100:
 				String idPath = filename.substring(0, filename.length() - 4).toLowerCase();
