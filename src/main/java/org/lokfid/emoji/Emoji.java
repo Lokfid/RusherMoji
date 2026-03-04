@@ -14,17 +14,14 @@ public class Emoji {
         this.resourceLocation = resourceLocation;
     }
 
-    public void render(GuiGraphics context, Font font, int x, int y, int color){
-
-        //So context.blit doesn't have a way to make the texture transparent. So we do this
-        float alpha = ((color >> 24) & 0xFF) / 255.0F;
+    public void render(GuiGraphics context, Font font, int x, int y, int color) {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, alpha);
 
-        //Render the texture itself
-//        context.blit(resourceLocation, x, y - font.lineHeight / 8, 0, 0, font.lineHeight, font.lineHeight, font.lineHeight, font.lineHeight);
-        context.blit(RenderType::guiTextured, resourceLocation, x, y - font.lineHeight / 8, 0, 0, font.lineHeight, font.lineHeight, font.lineHeight, font.lineHeight);
+        // Pass color directly to blit so the fade alpha is applied to the texture
+        context.blit(RenderType::guiTextured, resourceLocation, x, y - font.lineHeight / 8, 0, 0, font.lineHeight, font.lineHeight, font.lineHeight, font.lineHeight, color | 0xFFFFFF);
+
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.disableBlend();
     }
 }
