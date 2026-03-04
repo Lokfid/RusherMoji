@@ -7,7 +7,7 @@ plugins {
 
 version = project.plugin_version
 group = project.maven_group
-archivesBaseName = project.plugin_name
+base.archivesName = project.plugin_name
 
 configurations {
 	rusherhackApi
